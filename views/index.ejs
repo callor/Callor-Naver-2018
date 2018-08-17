@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+  <% include include/head.html %>
+  <title>네이버는 내친구</title>
+  <style>
+    .w3-card-4 {
+    	overflow: auto;
+    	height: 300px;
+    	padding: 15px;
+    	align : center;
+    	margin:15px;
+    }
+  
+  </style>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  	<% include include/header.html %>
+  	
+  	<section class='w3-margin'>
+  		<!--  form-inline 클래스는 bootstrap css이다. -->
+  		<form class='form-inline' action='/naver/book' method='POST'>
+  			<div class='col-md-7 controll-group'>
+  				<input placeholder='검색어를 입력한 후 Enter' 
+  					text='text' name='query' id='query'>
+  				<button class='btn btn-success'>검색</button>
+  			</div>
+  		</form>
+  	</section>
+  	<section class='row'>
+  		<% books.forEach((book)=>{ %>
+  			<div class='w3-card-4 col-md-2'>
+  				<a href='<%- book.link %>' target='_new'>
+					<img src='<%- book.image %>' class='img-rounded'>
+				</a>
+  				<div class='caption'><%- book.title %></div>
+  			</div>
+  		<% }) %>
+  	</section>
   </body>
 </html>
